@@ -51,6 +51,7 @@ import { onMounted, ref } from "vue";
 import { Modal } from "ant-design-vue";
 import FormInput from "../components/signup/FormInput.vue";
 import { signIn } from "../services/fetchers";
+import router from "../router";
 
 interface FormState {
   id: string;
@@ -73,7 +74,9 @@ const onFinish = async (values: FormState) => {
         title: "로그인 성공",
         content: "로그인에 성공하셨습니다.",
         okText: "네",
-        onOk() {},
+        onOk() {
+          router.push("home");
+        },
       });
     }
   } catch (error) {
@@ -89,9 +92,7 @@ const onFinish = async (values: FormState) => {
   }
 };
 
-const onFinishFailed = (errorInfo: FormState) => {
-  console.log("Failed:", errorInfo);
-};
+const onFinishFailed = (errorInfo: FormState) => {};
 
 onMounted(() => {});
 </script>

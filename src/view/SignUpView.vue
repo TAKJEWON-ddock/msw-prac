@@ -152,15 +152,19 @@ const onFinish = async (values: FormState) => {
       });
     }
   } catch (error) {
-    console.error("Sign up failed:", error);
+    console.log("Sign up failed:", error);
+
+    Modal.error({
+      title: "회원가입 실패",
+      content: "회원가입에 실패하였습니다.",
+      okText: "네",
+    });
   } finally {
     loading.value = false;
   }
 };
 
-const onFinishFailed = (errorInfo: FormState) => {
-  console.log("Failed:", errorInfo);
-};
+const onFinishFailed = (errorInfo: FormState) => {};
 
 const moveToLoginPage = () => {
   router.push("login");

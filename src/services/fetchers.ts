@@ -6,8 +6,12 @@ export const hello = async function () {
 };
 
 export const signUp = async function (params: any) {
-  const response = await axios.post("/signup", params);
-  return response;
+  try {
+    const response = await axios.post("/signup", params);
+    return response;
+  } catch (error) {
+    throw error; // 에러를 다시 던져서 상위에서 핸들링 가능
+  }
 };
 
 export const signIn = async function (params: any) {
