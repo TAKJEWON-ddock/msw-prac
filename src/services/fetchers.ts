@@ -18,3 +18,8 @@ export const signIn = async function (params: any) {
   const response = await axios.post("/signin", params);
   return response;
 };
+
+export const getUserList = async function () {
+  const response = await axios.get("/getUserList");
+  return response;
+};

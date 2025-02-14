@@ -52,4 +52,10 @@ export const handlers = [
       return HttpResponse.json({ message: "로그인 실패" }, { status: 404 });
     }
   }),
+
+  http.get("/getUserList", async () => {
+    const users = JSON.parse(localStorage.getItem("userInfo") || "[]");
+
+    return HttpResponse.json(users, { status: 200 });
+  }),
 ];

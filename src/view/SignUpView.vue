@@ -78,7 +78,7 @@
 
       <a-form-item name="birthday">
         <P class="input-title">생년월일</P>
-        <a-date-picker
+        <a-date-picker      
           placeholder="날짜를 선택해주세요"
           size="large"
           v-model:value="formState.birthday"
@@ -105,7 +105,7 @@ import FormInput from "../components/signup/FormInput.vue";
 import { signUp } from "../services/fetchers";
 import router from "../router";
 
-interface FormState {
+export interface UserInfo {
   id: string;
   password: string;
   passwordConfirm: string;
@@ -115,7 +115,7 @@ interface FormState {
   birthday: string;
 }
 
-const formState = ref<FormState>({
+const formState = ref<UserInfo>({
   id: "",
   password: "",
   passwordConfirm: "",
@@ -137,7 +137,7 @@ function validatePasswordConfirm(_: string, value: string) {
 
 const loading = ref<boolean>(false);
 
-const onFinish = async (values: FormState) => {
+const onFinish = async (values: UserInfo) => {
   try {
     loading.value = true;
     const result = await signUp(values);
@@ -162,7 +162,7 @@ const onFinish = async (values: FormState) => {
   }
 };
 
-const onFinishFailed = (errorInfo: FormState) => {};
+const onFinishFailed = (errorInfo: UserInfo) => {};
 
 const moveToLoginPage = () => {
   router.push("login");
