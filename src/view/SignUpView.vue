@@ -152,8 +152,6 @@ const onFinish = async (values: FormState) => {
       });
     }
   } catch (error) {
-    console.log("Sign up failed:", error);
-
     Modal.error({
       title: "회원가입 실패",
       content: "회원가입에 실패하였습니다.",
