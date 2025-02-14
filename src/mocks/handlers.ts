@@ -39,27 +39,15 @@ export const handlers = [
 
   http.post("/signin", async ({ request }) => {
     const loginInfo = (await request.json()) as LoginInfo;
-    const userInfo = localStorage.getItem("userInfo");
 
-    if (userInfo) {
-      try {
-        const parsedUserInfo: UserInfo = JSON.parse(userInfo);
-        const { id, password } = loginInfo;
-
-        if (id == parsedUserInfo.id && password == parsedUserInfo.password) {
-          return HttpResponse.json<UserInfo>(parsedUserInfo, { status: 200 });
-        } else {
-          return HttpResponse.json(
-            { message: "Invalid credentials" },
-            { status: 401 }
-          );
-        }
-      } catch (error) {
-        return HttpResponse.json(
-          { message: "Internal Server Error" },
-          { status: 500 }
-        );
-      }
+    const users = JSON.parse(localStorage.getItem("userInfo") || "[]");
+    if (
+      users.some(
+        (user: { id: string; password: string }) =>
+          user.id === loginInfo.id && user.password === loginInfo.password
+      )
+    ) {
+      return HttpResponse.json({ message: "로그인 성공" }, { status: 200 });
     } else {
       return HttpResponse.json({ message: "User not found" }, { status: 404 });
     }
