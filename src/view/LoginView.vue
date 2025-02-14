@@ -42,6 +42,7 @@
           :loading="loading"
           >로그인</a-button
         >
+        <a-button @click="moveToSignInPage()">회원가입</a-button>
       </a-form-item>
     </a-form>
   </div>
@@ -64,6 +65,10 @@ const formState = ref<FormState>({
 });
 
 const loading = ref<boolean>(false);
+
+const moveToSignInPage = () => {
+  router.push("signUp");
+};
 
 const onFinish = async (values: FormState) => {
   try {

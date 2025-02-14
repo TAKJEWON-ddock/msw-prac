@@ -49,7 +49,7 @@ export const handlers = [
     ) {
       return HttpResponse.json({ message: "로그인 성공" }, { status: 200 });
     } else {
-      return HttpResponse.json({ message: "User not found" }, { status: 404 });
+      return HttpResponse.json({ message: "로그인 실패" }, { status: 404 });
     }
   }),
 ];

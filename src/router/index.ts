@@ -4,7 +4,11 @@ import LoginView from "../view/LoginView.vue";
 import Home from "../view/Home/index.vue"
 
 const routes = [
-  { path: "/", component: SignUpView },
+  {
+    path: '/',
+    redirect: '/login',
+  },
+  { path: "/signUp", component: SignUpView },
   {
     path: "/login",
     component: LoginView,
